@@ -4,5 +4,10 @@ This is usefull if you'r in a place with limited free wifi, but you really need 
 
 Usage:
 ```bash
+# Run this:
 bash ./spoofify.sh
+# Reconnect to the WiFi Hotspot
 ```
+
+Note:
+Currently still need to figure out a way that automatically reconnects to the current wifi device.
