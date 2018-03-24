@@ -5,7 +5,7 @@ This is usefull if you'r in a place with limited free wifi, but you really need 
 Usage:
 ```bash
 # Run this:
-bash ./spoofify.sh
+sudo bash ./spoofify.sh
 # Reconnect to the WiFi Hotspot
 ```
 

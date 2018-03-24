@@ -12,6 +12,8 @@ CURRENT_ADDRESS=$(ifconfig $CURRENT_DEVICE | awk '/ether/{print $2}')
 NEW_ADDRESS=$(openssl rand -hex 6 | sed 's/\(..\)/\1:/g; s/.$//')
 echo "Current MAC Address = '$CURRENT_ADDRESS'"
 
+echo "Root access is needed to modify the network settings:"
+
 # Actually change the address
 sudo ifconfig $CURRENT_DEVICE ether $NEW_ADDRESS
 
@@ -19,4 +21,9 @@ sudo ifconfig $CURRENT_DEVICE ether $NEW_ADDRESS
 NEW_ADDRESS_VERIFIED=$(ifconfig $CURRENT_DEVICE | awk '/ether/{print $2}')
 
 echo "New Address = '$NEW_ADDRESS_VERIFIED'"
-echo "You now need to disconnect frmo your current network and connect again."
+
+# Disconnect from the current network
+# TODO: Reconnecting currently doesn't work.
+# CURRENT_NETWORK=$(networksetup -getairportnetwork $CURRENT_DEVICE)
+sudo /System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport -z
+# networksetup -setairportnetwork $CURRENT_NETWORK
